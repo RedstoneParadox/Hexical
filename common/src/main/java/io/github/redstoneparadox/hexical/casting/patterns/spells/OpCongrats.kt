@@ -57,7 +57,7 @@ class OpCongrats : SpellAction {
      */
     private data class Spell(val player: ServerPlayerEntity) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
-            ctx.caster.sendMessage(Text.translatable("text.hexical.congrats", player.displayName));
+            // ctx.caster.sendMessage(Text.translatable("text.hexical.congrats", player.displayName));
         }
     }
 }
