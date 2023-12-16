@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "hexical",
+  "version": "${version}",
+  "name": "Hexical",
+  "description": "Hexical addon for Hex Casting",
+  "authors": [
+    "RedstoneParadox"
+  ],
+  "contact": {
+    "homepage": "https://redstoneparadox.github.io/Hexical",
+    "sources": "https://github.com/RedstoneParadox/Hexical"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.redstoneparadox.hexical.fabric.HexicalFabric"
+    ],
+    "client": [
+      "io.github.redstoneparadox.hexical.fabric.HexicalClientFabric"
+    ]
+  },
+  "mixins": [
+    "hexical-common.mixins.json",
+    "hexical.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=1.19.2",
+    "fabricloader": ">=0.14.21",
+    "fabric-api": "*",
+    "fabric-language-kotlin": ">=1.9.0+kotlin.1.8.0",
+    "architectury": ">=6.5.85",
+    "hexcasting": ">=0.10.3"
+  }
+}

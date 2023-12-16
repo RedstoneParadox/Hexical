@@ -1,0 +1,20 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# https://copier.readthedocs.io/en/stable/configuring/#the-copier-answersyml-file
+_commit: v0.0.3
+_src_path: gh:object-Object/hexdummy
+author: RedstoneParadox
+capitalize_platforms: true
+classname: Hexical
+default_branch: main
+description: Hexical addon for Hex Casting
+display_name: Hexical
+github_repo: Hexical
+hexcasting_version: 0.10.3
+homepage_url: https://redstoneparadox.github.io/Hexical
+initial_mod_version: 0.0.1
+java_version: 17
+license: MIT
+mappings: loom.officialMojangMappings()
+modid: hexical
+package: io.github.redstoneparadox.hexical
+sources_url: https://github.com/RedstoneParadox/Hexical
