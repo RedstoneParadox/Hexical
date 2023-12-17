@@ -13,6 +13,14 @@
       "input": "number",
       "output": "number",
       "text": "hexical.page.dummy_actions.signum"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexical:planeswalkers_reflection",
+      "anchor": "hexical:planeswalkers_reflection",
+      "input": "",
+      "output": "dimension",
+      "text": "hexical.page.dummy_actions.planeswalkers_reflection"
     }
   ]
 }
