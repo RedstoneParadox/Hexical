@@ -46,7 +46,7 @@ public class DimensionIota extends Iota {
 			return 0xff_53daf6;
 		}
 	};
-	protected DimensionIota(@NotNull Object payload) {
+	public DimensionIota(@NotNull Object payload) {
 		super(TYPE, payload);
 	}
 

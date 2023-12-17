@@ -4,6 +4,7 @@ import at.petrak.hexcasting.api.PatternRegistry;
 import at.petrak.hexcasting.api.spell.Action;
 import at.petrak.hexcasting.api.spell.math.HexDir;
 import at.petrak.hexcasting.api.spell.math.HexPattern;
+import io.github.redstoneparadox.hexical.casting.patterns.actions.OpGetDimension;
 import kotlin.Triple;
 import io.github.redstoneparadox.hexical.casting.patterns.math.OpSignum;
 import io.github.redstoneparadox.hexical.casting.patterns.spells.OpCongrats;
@@ -20,6 +21,7 @@ public class HexicalPatternRegistry {
     // IMPORTANT: be careful to keep the registration calls looking like this, or you'll have to edit the hexdoc pattern regex.
     public static HexPattern CONGRATS = registerPerWorld(HexPattern.fromAngles("eed", HexDir.WEST), "congrats", new OpCongrats());
     public static HexPattern SIGNUM = register(HexPattern.fromAngles("edd", HexDir.NORTH_WEST), "signum", new OpSignum());
+    public static HexPattern PLANESWALKERS_REFLECTION = register(HexPattern.fromAngles("wwaawdwa", HexDir.EAST), "planeswalkers_reflection", new OpGetDimension());
 
     public static void init() {
         try {
