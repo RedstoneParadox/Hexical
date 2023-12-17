@@ -11,6 +11,7 @@ import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,12 +29,13 @@ public class OpGetDimension implements ConstMediaAction {
 	@NotNull
 	@Override
 	public List<Iota> execute(@NotNull List<? extends Iota> list, @NotNull CastingContext castingContext) {
-		var caster = castingContext.getCaster();
-		var world = caster.world;
-		var dimension = world.getDimension();
-		var iota = new DimensionIota(dimension);
+		var world = castingContext.getWorld();
+		var key = world.getDimensionKey();
+		var iota = new DimensionIota(key);
+		var out = new ArrayList<Iota>();
 
-		return Collections.singletonList(iota);
+		out.add(iota);
+		return out;
 	}
 
 	@Override

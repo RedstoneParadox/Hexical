@@ -2,18 +2,17 @@ package io.github.redstoneparadox.hexical.iota;
 
 import at.petrak.hexcasting.api.spell.iota.Iota;
 import at.petrak.hexcasting.api.spell.iota.IotaType;
-import at.petrak.hexcasting.api.spell.mishaps.MishapInvalidIota;
 import at.petrak.hexcasting.api.utils.HexUtils;
+import dev.architectury.registry.registries.Registries;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.dimension.DimensionType;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class DimensionIota extends Iota {
 	public static IotaType<DimensionIota> TYPE = new IotaType<>() {
@@ -22,10 +21,12 @@ public class DimensionIota extends Iota {
 			var compound = HexUtils.downcast(tag, NbtCompound.TYPE);
 			var id = new Identifier(compound.getString("dimension"));
 			var dimensionType = BuiltinRegistries.DIMENSION_TYPE.get(id);
+			var key = BuiltinRegistries.DIMENSION_TYPE.getKey(dimensionType);
 
-			if (dimensionType == null) throw new IllegalArgumentException("Dimension type was null");
+			if (dimensionType == null) throw new IllegalArgumentException("Dimension type '" + id + "' was not found.");
+			if (key.isEmpty()) throw new IllegalArgumentException("No registry key for dimension type '" + id + "' was found.");
 
-			return new DimensionIota(dimensionType);
+			return new DimensionIota(key.get());
 		}
 
 		@Override
@@ -61,14 +62,14 @@ public class DimensionIota extends Iota {
 			return false;
 		}
 
-		return this.getDimensionType() == ((DimensionIota) that).getDimensionType();
+		return this.getDimensionKey() == ((DimensionIota) that).getDimensionKey();
 	}
 
 	@Override
 	public @NotNull NbtElement serialize() {
 		var tag = new NbtCompound();
-		var dimensionType = getDimensionType();
-		var id = BuiltinRegistries.DIMENSION_TYPE.getId(dimensionType);
+		var dimensionKey = getDimensionKey();
+		var id = dimensionKey.getValue();
 
 		assert id != null;
 		tag.putString("dimension", id.toString());
@@ -76,7 +77,7 @@ public class DimensionIota extends Iota {
 		return tag;
 	}
 
-	public DimensionType getDimensionType() {
-		return (DimensionType) payload;
+	public RegistryKey<DimensionType> getDimensionKey() {
+		return (RegistryKey<DimensionType>) payload;
 	}
 }
